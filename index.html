@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BENHONG | 奔鸿高端牛仔</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #030303;
+            --surface-color: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent: #e0e0e0;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        .cinzel { font-family: 'Cinzel', serif; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Typography utils */
+        .subtitle {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 5vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            background: transparent;
+        }
+        nav.scrolled {
+            background: rgba(3, 3, 3, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 5vw;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .logo { font-size: 1.5rem; letter-spacing: 4px; font-weight: 600; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeUp 1.5s forwards 0.5s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .hero h1 {
+            font-size: 5.5rem;
+            letter-spacing: 12px;
+            margin-bottom: 20px;
+        }
+        .hero p.tagline {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: #ddd;
+            letter-spacing: 1px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--accent);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            background: transparent;
+            cursor: pointer;
+        }
+        .btn:hover { background: var(--accent); color: var(--bg-color); }
+
+        /* Sections */
+        section { padding: 120px 5vw; border-bottom: 1px solid var(--border-color); }
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-header h2 { font-size: 2.5rem; letter-spacing: 4px; margin-bottom: 20px; }
+        .section-header p { color: var(--text-secondary); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+        /* Categories */
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .cat-card {
+            background: var(--surface-color);
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        .cat-card:hover {
+            border-color: var(--border-color);
+            transform: translateY(-10px);
+        }
+        .cat-card i { font-size: 2rem; color: var(--text-secondary); margin-bottom: 20px; }
+        .cat-card h3 { font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 2px; }
+        .cat-card p { font-size: 0.9rem; color: var(--text-secondary); }
+
+        /* Featured Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        .product-card {
+            display: flex;
+            background: var(--surface-color);
+            overflow: hidden;
+            group: hover;
+            height: 400px;
+        }
+        .product-img {
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            filter: grayscale(20%);
+        }
+        .product-card:hover .product-img img { transform: scale(1.05); filter: grayscale(0%); }
+        .product-info {
+            width: 50%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .product-info span { color: var(--text-secondary); font-family: 'Cinzel', serif; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 10px; display: block; }
+        .product-info h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .product-info p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 30px; }
+        .product-info a { border-bottom: 1px solid var(--text-secondary); padding-bottom: 5px; width: fit-content; font-size: 0.85rem; letter-spacing: 1px; transition: var(--transition); }
+        .product-info a:hover { color: var(--text-primary); border-color: var(--text-primary); }
+
+        /* Capability */
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+        }
+        .cap-item h3 { font-size: 1.4rem; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        .cap-item p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* Story */
+        .story-section { background: var(--surface-color); }
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+        .story-content { display: flex; flex-direction: column; gap: 50px; justify-content: center; }
+        .story-block h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .story-block p { color: var(--text-secondary); font-size: 1rem; }
+        .story-img-wrap { height: 700px; }
+        .story-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8); }
+
+        /* Footer */
+        footer { padding: 80px 5vw 40px; text-align: center; }
+        .footer-logo { font-size: 2.5rem; margin-bottom: 30px; display: block; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; }
+        .footer-links a { color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links a:hover { color: var(--text-primary); }
+        .copyright { color: #555; font-size: 0.8rem; letter-spacing: 1px; border-top: 1px solid var(--border-color); padding-top: 30px; }
+
+        /* Animations */
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1024px) {
+            .cat-grid, .products-grid, .capability-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 4rem; }
+            .product-card { flex-direction: column; height: auto; }
+            .product-img, .product-info { width: 100%; }
+            .product-img { height: 300px; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .story-grid, .cat-grid, .products-grid, .capability-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero h1 { font-size: 3rem; letter-spacing: 6px; }
+            .hero p.tagline { font-size: 1.1rem; }
+            .story-img-wrap { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="logo cinzel">BENHONG</a>
+        <div class="nav-links">
+            <a href="#categories">商品分类</a>
+            <a href="#featured">精选产品</a>
+            <a href="#capability">工艺实力</a>
+            <a href="#story">品牌故事</a>
+        </div>
+        <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 0.75rem;">合作咨询</a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <span class="subtitle cinzel">FOSHAN · JIANGXI</span>
+            <h1 class="cinzel">BENHONG NOIR</h1>
+            <p class="tagline serif">把工厂的锋利质感，做成让人立刻想下单的牛仔产品。</p>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="#featured" class="btn">查看精选产品</a>
+                <a href="#story" class="btn" style="border-color: transparent; color: var(--text-secondary);">了解品牌故事</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="categories">
+        <div class="section-header reveal">
+            <span class="subtitle">Product Architecture</span>
+            <h2>商品分类</h2>
+            <p>围绕中国消费者的核心购买场景构建产品矩阵，从通勤、显瘦、街头感到高阶质感，形成清晰的选购路径。</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card reveal">
+                <i class="fa-solid fa-person"></i>
+                <h3>男士牛仔裤</h3>
+                <p>直筒、宽松、工装感版型，强调硬朗轮廓与都市质感。</p>
+            </div>
+            <div class="cat-card reveal" style="transition-delay: 0.1s;">
+                <i class="fa-solid fa-person-dress"></i>
+                <h3>女士牛仔裤</h3>
+                <p>高腰、阔腿、直筒与修身系列，注重比例优化与上身效果。</p>
+            </div>
+            <div class="cat-card reveal" style="transition-delay: 0.2s;">
+                <i class="fa-solid fa-shirt"></i>
+                <h3>牛仔外套</h3>
+                <p>短款、廓形、复古水洗外套，适合品牌感展示和搭配延展。</p>
+            </div>
+            <div class="cat-card reveal" style="transition-delay: 0.3s;">
+                <i class="fa-solid fa-handshake"></i>
+                <h3>定制与联名</h3>
+                <p>适合渠道合作、选品合作与品牌联名开发，保留工厂端灵活度。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="featured">
+        <div class="section-header reveal">
+            <span class="subtitle">Featured Selection</span>
+            <h2>精选产品</h2>
+            <p>适合做中国市场展示、社媒传播与带货转化的核心款型，可直接作为首批视觉主推。</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1624378439575-d1ead6bb2014?q=80&w=800&auto=format&fit=crop" alt="Urban Straight">
+                </div>
+                <div class="product-info">
+                    <span>URBAN STRAIGHT 01</span>
+                    <h3 class="serif">男士高阶直筒牛仔裤</h3>
+                    <p>微落地裤长，深靛蓝洗水，适合通勤与轻奢街头穿搭，展现克制的高级感。</p>
+                    <a href="#">探索详情</a>
+                </div>
+            </div>
+            <div class="product-card reveal" style="transition-delay: 0.1s;">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" alt="Curve Wide">
+                </div>
+                <div class="product-info">
+                    <span>CURVE WIDE 02</span>
+                    <h3 class="serif">女士高腰阔腿牛仔裤</h3>
+                    <p>修饰腰臀线条，显腿长，浅灰蓝调更适合时髦拍摄和日常搭配。</p>
+                    <a href="#">探索详情</a>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1560243563-062bfc001d68?q=80&w=800&auto=format&fit=crop" alt="Raw Black">
+                </div>
+                <div class="product-info">
+                    <span>RAW BLACK 03</span>
+                    <h3 class="serif">黑色原牛窄直牛仔裤</h3>
+                    <p>利落锋利，适合打造更高级、更克制的中国都市男装气质。</p>
+                    <a href="#">探索详情</a>
+                </div>
+            </div>
+            <div class="product-card reveal" style="transition-delay: 0.1s;">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?q=80&w=800&auto=format&fit=crop" alt="Box Jacket">
+                </div>
+                <div class="product-info">
+                    <span>BOX JACKET 04</span>
+                    <h3 class="serif">短款廓形牛仔外套</h3>
+                    <p>为视觉主 KV 和高端陈列而生，拉高整个品牌站的调性与购买欲。</p>
+                    <a href="#">探索详情</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="capability">
+        <div class="section-header reveal">
+            <span class="subtitle">Factory Capability</span>
+            <h2>工艺与制造实力</h2>
+            <p>让消费者看到产品质感背后的真实支撑，也让 B 端客户看到我们作为制造方的长期能力。</p>
+        </div>
+        <div class="capability-grid reveal">
+            <div class="cap-item">
+                <span class="subtitle">01 / Pattern System</span>
+                <h3 class="serif">版型系统</h3>
+                <p>围绕亚洲体型和中国市场审美做版型微调，从高腰线到臀围弧度，强化"上身即见效果"的穿着体验。</p>
+            </div>
+            <div class="cap-item">
+                <span class="subtitle">02 / Wash Language</span>
+                <h3 class="serif">洗水语言</h3>
+                <p>从深靛蓝、灰调、做旧到轻奢黑洗，以环保且成熟的水洗工艺，覆盖从大众到高端视觉的质感层次。</p>
+            </div>
+            <div class="cap-item">
+                <span class="subtitle">03 / Production</span>
+                <h3 class="serif">生产协同</h3>
+                <p>佛山与江西双工厂协同供应能力，不仅保证大货稳定性，也为后续扩款、快速补货和联名开发留出充足空间。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="story" class="story-section">
+        <div class="story-grid">
+            <div class="story-content reveal">
+                <div class="story-block">
+                    <span class="subtitle">ORIGIN</span>
+                    <h3 class="serif">从长期 ToB 制造，走向消费者表达。</h3>
+                    <p>我们的基础来自工厂、订单、版型、洗水与稳定交付；而下一步，是把这些年积累的制造能力，转化为一个更被中国消费者看见的牛仔品牌表达。</p>
+                </div>
+                <div class="story-block">
+                    <span class="subtitle">VISION</span>
+                    <h3 class="serif">做有质感、有身段的中国牛仔。</h3>
+                    <p>我们希望每一条牛仔裤，不只是满足穿着的基础需求，还能满足消费者对于高级感、气场和日常出镜率的期待。不妥协于廉价，只为品质发声。</p>
+                </div>
+                <div class="story-block">
+                    <span class="subtitle">FUTURE</span>
+                    <h3 class="serif">家族传承与现代视角的碰撞。</h3>
+                    <p>三十年外贸与内销底蕴，结合新一代的数字与 AI 视角。我们将工厂的硬核实力与现代视觉审美结合，为你带来触手可及的奢华体验。</p>
+                </div>
+            </div>
+            <div class="story-img-wrap reveal">
+                <img src="https://images.unsplash.com/photo-1601248067425-4521469e5d48?q=80&w=1000&auto=format&fit=crop" alt="Factory Story">
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <span class="footer-logo cinzel">BENHONG NOIR</span>
+        <div class="footer-links">
+            <a href="#categories">商品分类</a>
+            <a href="#featured">精选产品</a>
+            <a href="#capability">工艺实力</a>
+            <a href="mailto:contact@benhong.com">合作咨询</a>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 0.9rem;">
+            品牌方向：高端牛仔 · 工厂品牌化 · 中国市场表达<br>
+            合作方向：渠道合作 · 达人合作 · 品牌联名 · 选品展示
+        </p>
+        <div class="copyright">
+            &copy; 2026 佛山市奔鸿服装有限公司. Crafted for Impact in China.
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
