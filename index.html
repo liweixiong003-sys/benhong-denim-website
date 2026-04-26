@@ -166,7 +166,7 @@
     </section>
 
     <!-- 全球合作伙伴 -->
-    <section id="partners" style="position: relative; background: var(--surface-color);">
+    <section id="partners" style="position: relative; background: var(--surface-color); overflow: hidden;">
         <div style="position: relative; z-index: 2;">
             <div class="section-header reveal">
                 <span class="subtitle">Global Trust</span>
@@ -175,24 +175,30 @@
             </div>
             
             <div class="map-interactive reveal">
-                <!-- 交互式地图点阵，附带高级双语标签 -->
+                <!-- 交互式地图点阵，附带高级双语标签与雷达动效 -->
+                <!-- 俄罗斯: 右侧 -->
                 <div class="map-dot" style="top: 22%; left: 70%;">
-                    <span class="dot-label">Russia<br>俄罗斯</span>
+                    <span class="dot-label label-right">Russia<br>俄罗斯</span>
                 </div>
+                <!-- 德国: 上方 -->
                 <div class="map-dot" style="top: 30%; left: 51%;">
-                    <span class="dot-label">Germany<br>德国</span>
+                    <span class="dot-label label-top">Germany<br>德国</span>
                 </div>
-                <div class="map-dot" style="top: 32%; left: 48%;">
-                    <span class="dot-label">France<br>法国</span>
+                <!-- 法国: 左侧 -->
+                <div class="map-dot" style="top: 33%; left: 47%;">
+                    <span class="dot-label label-left">France<br>法国</span>
                 </div>
-                <div class="map-dot" style="top: 36%; left: 52%;">
-                    <span class="dot-label">Italy<br>意大利</span>
+                <!-- 意大利: 下方 -->
+                <div class="map-dot" style="top: 36%; left: 51.5%;">
+                    <span class="dot-label label-bottom">Italy<br>意大利</span>
                 </div>
-                <div class="map-dot" style="top: 29%; left: 53%;">
-                    <span class="dot-label">Poland<br>波兰</span>
+                <!-- 波兰: 右侧偏下 -->
+                <div class="map-dot" style="top: 28%; left: 53%;">
+                    <span class="dot-label label-right">Poland<br>波兰</span>
                 </div>
-                <div class="map-dot" style="top: 29.5%; left: 49.5%;">
-                    <span class="dot-label">Netherlands<br>荷兰</span>
+                <!-- 荷兰: 左上方 -->
+                <div class="map-dot" style="top: 28.5%; left: 49.5%;">
+                    <span class="dot-label label-top-left">Netherlands<br>荷兰</span>
                 </div>
             </div>
 
