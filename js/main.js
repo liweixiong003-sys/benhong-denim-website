@@ -40,15 +40,18 @@ function initEChartsMap() {
             echarts.registerMap('world', worldJson);
             const myChart = echarts.init(mapContainer);
 
-            // Adjust labels to not overlap
+            // Adjust labels with precise offsets to absolutely prevent overlap
             const partnerData = [
-                { name: 'Russia\n俄罗斯', value: [90.0, 60.0], label: { position: 'right' } },
-                { name: 'Germany\n德国', value: [10.4515, 51.1657], label: { position: 'top' } },
-                { name: 'France\n法国', value: [2.2137, 46.2276], label: { position: 'left' } },
-                { name: 'Italy\n意大利', value: [12.5674, 41.8719], label: { position: 'bottom' } },
-                { name: 'Poland\n波兰', value: [19.1451, 51.9194], label: { position: 'right' } },
-                { name: 'Netherlands\n荷兰', value: [5.2913, 52.1326], label: { position: 'top', offset: [-10, -5] } }
+                { name: 'RUSSIA\n俄罗斯', value: [90.0, 60.0], label: { position: 'right', offset: [10, 0] } },
+                { name: 'GERMANY\n德国', value: [10.4515, 51.1657], label: { position: 'top', offset: [0, -10] } },
+                { name: 'FRANCE\n法国', value: [2.2137, 46.2276], label: { position: 'left', offset: [-10, 5] } },
+                { name: 'ITALY\n意大利', value: [12.5674, 41.8719], label: { position: 'bottom', offset: [0, 10] } },
+                { name: 'POLAND\n波兰', value: [19.1451, 51.9194], label: { position: 'right', offset: [15, -10] } },
+                { name: 'NETHERLANDS\n荷兰', value: [5.2913, 52.1326], label: { position: 'left', offset: [-15, -15] } }
             ];
+
+            const premiumGold = '#D4AF37'; // Champagne Gold, much more elegant than pure yellow
+            const premiumGoldGlow = 'rgba(212, 175, 55, 0.4)';
 
             const option = {
                 backgroundColor: 'transparent',
@@ -63,29 +66,30 @@ function initEChartsMap() {
                         }
                     },
                     backgroundColor: 'rgba(10, 10, 10, 0.9)',
-                    borderColor: '#FFD700',
+                    borderColor: premiumGold,
                     borderWidth: 1,
-                    textStyle: { color: '#FFD700', fontFamily: 'Cinzel, sans-serif' }
+                    padding: [10, 15],
+                    textStyle: { color: premiumGold, fontFamily: '"Cinzel", "Noto Sans SC", serif', fontSize: 13, letterSpacing: 1 }
                 },
                 geo: {
                     map: 'world',
-                    roam: true, // Allow zooming to eliminate white space if user wants
-                    zoom: 1.5,
-                    center: [45, 45], // Focus on Eurasia
+                    roam: true, // Allow user interaction
+                    zoom: 3.5, // Magnify to focus on the points, eliminating blank space
+                    center: [30, 52], // Center perfectly over Europe/Russia
                     itemStyle: {
-                        areaColor: '#1a1a1a', // Very dark grey map
-                        borderColor: '#333', // Boundaries visible
+                        areaColor: '#161616', // Sleek dark grey
+                        borderColor: '#2a2a2a', // Subtle boundaries
                         borderWidth: 1
                     },
                     emphasis: {
                         itemStyle: {
-                            areaColor: '#2b2302', // Premium gold glow for the territory
-                            borderColor: '#FFD700',
-                            borderWidth: 1.5,
-                            shadowColor: 'rgba(255, 215, 0, 0.5)',
+                            areaColor: '#221e15', // Premium dark gold glow for territory
+                            borderColor: premiumGold,
+                            borderWidth: 1,
+                            shadowColor: premiumGoldGlow,
                             shadowBlur: 15
                         },
-                        label: { show: false } // Hide default labels
+                        label: { show: false }
                     }
                 },
                 series: [
@@ -94,32 +98,34 @@ function initEChartsMap() {
                         type: 'effectScatter',
                         coordinateSystem: 'geo',
                         data: partnerData,
-                        symbolSize: 10,
+                        symbolSize: 8,
                         showEffectOn: 'render',
                         rippleEffect: {
                             brushType: 'stroke',
-                            scale: 4
+                            scale: 5
                         },
                         itemStyle: {
-                            color: '#FFD700',
-                            shadowBlur: 10,
-                            shadowColor: '#FFD700'
+                            color: premiumGold,
+                            shadowBlur: 15,
+                            shadowColor: premiumGold
                         },
                         label: {
                             show: true,
                             formatter: '{b}',
-                            color: '#FFD700',
-                            fontSize: 12,
-                            fontFamily: 'Cinzel, Noto Sans SC',
-                            distance: 8,
-                            textBorderColor: '#000',
-                            textBorderWidth: 2
+                            color: premiumGold,
+                            fontSize: 11,
+                            fontFamily: '"Cinzel", "Noto Sans SC", serif',
+                            lineHeight: 16,
+                            textShadowColor: 'rgba(0, 0, 0, 0.9)',
+                            textShadowBlur: 5,
+                            textBorderWidth: 0 // Remove thick stroke, rely on shadow for elegance
                         },
                         emphasis: {
                             label: {
                                 show: true,
-                                fontSize: 14,
-                                fontWeight: 'bold'
+                                fontSize: 13,
+                                fontWeight: 'normal',
+                                textShadowBlur: 10
                             }
                         }
                     }
