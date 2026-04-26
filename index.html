@@ -58,8 +58,13 @@
                 </div>
             </div>
             <div class="story-img-wrap reveal">
-                <!-- 使用提取的工厂照片 -->
-                <img src="assets/factory.jpeg" alt="Factory Overview">
+                <!-- 公司实景矩阵 -->
+                <div class="factory-gallery">
+                    <img src="assets/factory_ganzhou.jpg" alt="赣州汇盈科技工业园 Ganzhou Industrial Park">
+                    <img src="assets/factory_foshan.jpg" alt="佛山总部 Foshan Headquarters">
+                    <img src="assets/factory_changxu.jpg" alt="长旭洗水厂 Changxu Washing Factory">
+                    <img src="assets/showroom.jpg" alt="展厅 Showroom">
+                </div>
                 <div class="stats-box">
                     <div class="stat-item">
                         <div class="stat-num">1.8M</div>
@@ -161,13 +166,26 @@
     </section>
 
     <!-- 全球合作伙伴 -->
-    <section id="partners" style="background: var(--surface-color);">
-        <div class="section-header reveal">
-            <span class="subtitle">Global Trust</span>
-            <h2>全球合作品牌</h2>
-            <p>我们的产品远销法国、德国、意大利、俄罗斯、波兰和荷兰等国，深获国内外一线品牌信赖。</p>
-        </div>
-        <div class="partners-wrap reveal">
+    <section id="partners" style="position: relative; overflow: hidden; background: var(--surface-color);">
+        <div class="map-bg"></div>
+        <div style="position: relative; z-index: 2;">
+            <div class="section-header reveal">
+                <span class="subtitle">Global Trust</span>
+                <h2>全球合作品牌</h2>
+                <p>我们的产品远销法国、德国、意大利、俄罗斯、波兰和荷兰等国，深获国内外一线品牌信赖。</p>
+            </div>
+            
+            <div class="map-interactive reveal">
+                <!-- 交互式地图点阵 (抽象化避免地图错误) -->
+                <div class="map-dot" style="top: 25%; left: 75%;" data-tooltip="俄罗斯 (Russia)"></div>
+                <div class="map-dot" style="top: 35%; left: 52%;" data-tooltip="德国 (Germany)"></div>
+                <div class="map-dot" style="top: 40%; left: 49%;" data-tooltip="法国 (France)"></div>
+                <div class="map-dot" style="top: 45%; left: 52%;" data-tooltip="意大利 (Italy)"></div>
+                <div class="map-dot" style="top: 33%; left: 55%;" data-tooltip="波兰 (Poland)"></div>
+                <div class="map-dot" style="top: 33%; left: 50%;" data-tooltip="荷兰 (Netherlands)"></div>
+            </div>
+
+            <div class="partners-wrap reveal">
             <div class="partner-logo">TIMEZONE</div>
             <div class="partner-logo">ZOLLA</div>
             <div class="partner-logo">BLUE MONKEY</div>
