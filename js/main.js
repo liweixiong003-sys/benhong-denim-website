@@ -73,9 +73,9 @@ function initEChartsMap() {
                 },
                 geo: {
                     map: 'world',
-                    roam: true, // Allow user interaction
-                    zoom: 3.5, // Magnify to focus on the points, eliminating blank space
-                    center: [30, 52], // Center perfectly over Europe/Russia
+                    roam: false, // Fix the map layout, disallow dragging/zooming
+                    zoom: 2.8, // Match the screenshot framing perfectly
+                    center: [20, 48], // Match the screenshot framing perfectly
                     itemStyle: {
                         areaColor: '#161616', // Sleek dark grey
                         borderColor: '#2a2a2a', // Subtle boundaries
