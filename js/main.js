@@ -29,6 +29,41 @@ document.addEventListener('DOMContentLoaded', () => {
     initEChartsMap();
 });
 
+// Mobile Navigation Toggle
+function toggleNav() {
+    const navLinks = document.getElementById('nav-links');
+    navLinks.classList.toggle('active');
+}
+
+// Close mobile menu when a link is clicked
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        const navLinks = document.getElementById('nav-links');
+        if(navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+        }
+    });
+});
+
+// Video Mute Toggle
+function toggleVideoMute() {
+    const video = document.getElementById('promo-video');
+    const muteText = document.getElementById('mute-text');
+    const icon = document.querySelector('#video-toggle i');
+    
+    if (video.muted) {
+        video.muted = false;
+        muteText.innerText = "静音";
+        icon.classList.remove('fa-volume-xmark');
+        icon.classList.add('fa-volume-high');
+    } else {
+        video.muted = true;
+        muteText.innerText = "播放声音";
+        icon.classList.remove('fa-volume-high');
+        icon.classList.add('fa-volume-xmark');
+    }
+}
+
 // Initialize ECharts Map
 function initEChartsMap() {
     const mapContainer = document.getElementById('echarts-map');

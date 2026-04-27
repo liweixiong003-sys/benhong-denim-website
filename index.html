@@ -17,7 +17,11 @@
     <!-- 导航栏 -->
     <nav id="navbar">
         <a href="#" class="logo cinzel">BENHONG</a>
-        <div class="nav-links">
+        <div class="menu-toggle" onclick="toggleNav()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="nav-links" id="nav-links">
+            <a href="#video-showcase">宣传大片</a>
             <a href="#about">品牌起源</a>
             <a href="#categories">核心业务</a>
             <a href="#featured">精选系列</a>
@@ -38,6 +42,20 @@
             </div>
         </div>
     </header>
+
+    <!-- 品牌宣传片 (Cinematic Video Showcase) -->
+    <section id="video-showcase" class="video-section">
+        <video id="promo-video" autoplay loop muted playsinline>
+            <source src="assets/promo.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay">
+            <span class="subtitle reveal">The Art of Denim</span>
+            <h2 class="reveal cinzel video-title">十八年制造底蕴</h2>
+            <button id="video-toggle" class="btn btn-gold reveal" onclick="toggleVideoMute()" style="margin-top: 20px;">
+                <i class="fa-solid fa-volume-xmark"></i> <span id="mute-text">播放声音</span>
+            </button>
+        </div>
+    </section>
 
     <!-- 关于我们 (整合自公司简介) -->
     <section id="about" class="story-section">
